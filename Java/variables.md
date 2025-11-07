@@ -1,0 +1,38 @@
+```java
+var greeting = "Father";
+greeting = "Mother"; // 'var' is not needed here because it was already declared.
+```
+
+- Java is **statically typed** language - the var type is set when it declared and cannot be changed afterwards.
+
+If you try to assign a number to the same var, you will get an error: incompatible types: int cannot be converted to java.lang.String.
+
+The **compiler** performs this check without running the code - this type of typing called static typing.
+In dynamic languages, the same behavior would not cause an error - a var can change its type during execution.
+
+'var' шы used to automatically define the type of a value based on the value:
+```java
+var x = 3; // x is inferred as int because 3 is an int
+int x = 3; // this is the explicit way to declare x as int.
+Using 'var' is often prefrebale the type is clear from the value assigned.
+This feature is called **type inference**.
+```
+
+- Magic numbers - create vars for numbers used in expressions:
+```java
+// Instead of this:
+var euros = 1000;
+var dollars = euros * 1.25; // What is 1.25? How would u or ur team undestand it when looking at the project after a month?
+
+// Do this:
+var euroToDollarRate = 1.25;
+
+var dollars = euros * euroToDollarRate;
+```
+
+#### Constants:
+
+- To declare data that never changes, use constants:
+```java
+final var pi = 3.14; // 'final' tells the compiler not to allow changes tho this var
+```
