@@ -1,3 +1,20 @@
+All not primitive (reference) types are **objects**.
+
+- Java is **statically typed** language - the var type is set when it declared and cannot be changed afterwards.
+
+If you try to assign a number to the String var, you will get an error: incompatible types: int cannot be converted to java.lang.String.
+
+The **compiler** performs this check without running the code - this type of typing called static typing.
+In dynamic languages, the same behavior would not cause an error - a var can change its type during execution.
+
+'var' is used to automatically define the type of a value based on the value:
+```java
+var x = 3; // x is inferred as int because 3 is an int
+int x = 3; // this is the explicit way to declare x as int.
+Using 'var' is often prefrebale the type is clear from the value assigned.
+This feature is called **type inference**.
+```
+
 - Syntax errors are detected **during compilation**, before the program starts running.
 
 
