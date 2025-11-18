@@ -10,11 +10,3 @@ var dollars = euros * 1.25; // How would you understand 1.25 when looking at it 
 var euroToDollarRate = 1.25;
 var dollars = euros * euroToDollarRate;
 ```
-
-
-2) Constants
-
-Declare data that never changes:
-```java
-final var pi = 3.14;
-```

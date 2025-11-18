@@ -1,27 +1,21 @@
-String - массив символов.
-
 Strings are **immutable**. String method can only return new string, not change existent.
-Create new based on old val. Strings Immutability worth for memory optimization, string can be cached in String Pool, also for safety in multithreaded environment.
+Strings Immutability worth for memory optimization, string can be cached in String Pool.
 When use string concatenation many temporary object created, so it can decrease performance.
 
 ```java
-var greet = "Hello"; // string store in specific memory space called 'String Pool'
+var greet = "Hello"; // string store in specific memory space - 'String Pool'
 ```
 
-String literals - strings that placed inside "literals". They automatically saved in String Pool, it let Java efficiently manage memory and decrease quantity of duplicating strings.
-
-When string create with literal, JVM checks, if exists the same string in Pool. If she finded, then returns link to it, if doesn't - create new string and place it in Pool.
+it let Java efficiently manage memory and decrease quantity of duplicating strings. JVM checks, if exists the same string in Pool. If she finded, then returns link to it, if doesn't - create new string and place it in Pool.
 
 ```java
-var greet =  new String("Hello";) // This way created new string object, even if same string already exist in Pool. Because of it using literals are preferable.
-
-var sub = greet.substring(0, 3).toUpperCase(); // "HEL". 'greet' is a object of class String and substring is a method of class String.
+var greet =  new String("Hello";) // This way created new string object, even if same string already exist in Pool. using literals are preferable.
+var sub = greet.substring(0, 3).toUpperCase(); // 'greet' is a object of class String and substring is a method of class String.
 ```
 
+Под хранение значения переменной выделяется область памяти. Значение получает адрес, по которому его можно извлечь и заменить.
 
-Под хранение значения переменной выделяется область памяти (Память — область для хранения данных, склад). Значение получает номер (адрес), по которому его можно извлечь и заменить.
-
-- Примитивные данные сравниваются по значению, независимо от адресов
+- Примитивные данные сравниваются по значению
 - Ссылочные данные сравниваются по адресам
 
 Если бы строка всегда вела себя как ссылочный тип, то на каждое значение в коде выделялась доп. память.

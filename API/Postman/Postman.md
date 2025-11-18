@@ -1,0 +1,1 @@
+https://sendel.ru/shorts/comments-in-json-postman/

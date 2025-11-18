@@ -2,27 +2,15 @@ All not primitive (reference) types are **objects**.
 
 - Java is **statically typed** language - the var type is set when it declared and cannot be changed afterwards.
 
-If you try to assign a number to the String var, you will get an error: incompatible types: int cannot be converted to java.lang.String.
+assign a number to the String var, you will get an error: incompatible types: int cannot be converted to java.lang.String.
 
 The **compiler** performs this check without running the code - this type of typing called static typing.
 In dynamic languages, the same behavior would not cause an error - a var can change its type during execution.
 
-'var' is used to automatically define the type of a value based on the value:
-```java
-var x = 3; // x is inferred as int because 3 is an int
-int x = 3; // this is the explicit way to declare x as int.
-Using 'var' is often prefrebale the type is clear from the value assigned.
-This feature is called **type inference**.
-```
 
 - Syntax errors are detected **during compilation**, before the program starts running.
 
-
-- At the basic level, computers operate only with **numbers**.
-
-
 - In Java, **integer division** is used **by default**: 3 / 2 = 1
-
 
 **null** - is not type, it's default value for **reference types** when val is not defined.
 
@@ -36,7 +24,6 @@ null and primitive types are not compatible. Primitive val always should be decl
 ### type conversion
 
 ```java
-// obvious
 var n = Integer.parseInt("345"); // 345
 var res = (int) 5.1; // 5 for conversion between primitive types
 ```
