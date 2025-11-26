@@ -1,1 +1,0 @@
-https://sendel.ru/posts/ssh-access-linux-server/
