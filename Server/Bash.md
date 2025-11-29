@@ -8,7 +8,8 @@ https://white55.ru/cmdmain.html
 
 Внутри терминала пользователь передает системе строки:
 
-![alt text](image.png)
+<img width="2048" height="1536" alt="image" src="https://github.com/user-attachments/assets/cad30575-fd03-4959-9959-1ccf13f5f092" />
+
 
 Оболочка запускается внутри терминала и приглашает ко вводу команд
 
@@ -16,8 +17,7 @@ https://white55.ru/cmdmain.html
 
 Терминал — программа, запускает командную оболочку внутри себя:
 
-![alt text](image-1.png)
-
+<img width="2707" height="965" alt="image" src="https://github.com/user-attachments/assets/961b5c1a-5627-435e-9d08-3d443dbb453a" />
 
 
 
@@ -35,7 +35,6 @@ https://white55.ru/cmdmain.html
 Hard Link — доп имя для уже сущ файла
 Symbolic link — символическая ссылка. файл похож на ярлык в Windows. Если удалить основной файл, символическая ссылка вести в никуда
 Socket — специальный файл, через который взаимодействие между разными процессами ОС.
-
 
 
 
