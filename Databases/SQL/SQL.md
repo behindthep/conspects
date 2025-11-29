@@ -494,7 +494,8 @@ FROM course_members
 GROUP BY user_id
 ORDER BY user_id;
 
-![alt text](image.png)
+<img width="2001" height="1908" alt="image" src="https://github.com/user-attachments/assets/e9e02551-7634-4146-8ef5-c4ca948f9449" />
+
 
 оператор GROUP BY. Теперь вы можете объединять одинаковые записи в группы и считать для этих групп агрегатные функции.
 
@@ -725,7 +726,7 @@ TRUNCATE courses;
 
 Ограничение UNIQUE
 
-![alt text](image-1.png)
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c43af736-3adf-46e0-bb24-54518df39259" />
 
 Ограничение UNIQUE гарантирует, что значение столбца (или комбинация столбцов) в таблице будут уникальными. Это означает, что в столбце не может быть двух одинаковых значений. При попытке вставить или обновить значение, которое уже существует в столбце с ограничением UNIQUE, будет выдана ошибка.
 
@@ -932,7 +933,7 @@ BEGIN -- открытие транзакции
 COMMIT -- закрытие транзакции
 Любая ошибка внутри транзакции откатывает все изменения, которые были сделаны после запроса BEGIN:
 
-![alt text](image-2.png)
+<img width="878" height="1080" alt="image" src="https://github.com/user-attachments/assets/7b05645d-665e-451e-93aa-ef7baf2d2a45" />
 
 Если нужно, транзакцию можно откатить самостоятельно. Для этого необходимо выполнить запрос ROLLBACK до COMMIT. Это нужно, когда выполняются запросы из кода приложения.
 
