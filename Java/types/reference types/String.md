@@ -1,38 +1,32 @@
-Strings are **immutable**. String method can only return new string, not change existent.
-Strings Immutability worth for memory optimization, string can be cached in String Pool.
-When use string concatenation many temporary object created, so it can decrease performance.
+Ссылочные типы создаются программистом, за исключением String и Array
+
+Строки **иммутабельны**. метод строки может только вернуть новую строку, не изменить сущ.
+Полезно для оптимизации памяти. Строки кэшируются в специальное место в памяти - String Pool.
+При использовании конкатенации строк много временных объектов создаётся, это может снизить производительность.
+Позволяет Java эффективно управлять памятью и избежать дублирующихся строк. 
+JVM проверяет, сущ. ли такая строки в Pool, если да, то возвращяет ссылку на неё, иначе создаёт новую и помещает в Pool.
 
 ```java
-var greet = "Hello"; // string store in specific memory space - 'String Pool'
+var name1 = "Java"; // Выделяется память 
+var name2 = "Java"; // строка уже есть, подставляется ссылка на уже созданную строку - экономится память
+// Сравнение по ссылке. Обе переменные указывают на один участок памяти
+name1 == name2; // true
+
+name1.equalsIgnoreCase(name3); // сравниваем строки по значению, чем по ссылке - методы. 
+
+var greet =  new String("Hello";) // Создаётся новый объект строки, даже если такая строка уже есть в Pool. литералы предпочтительнее.
 ```
 
-it let Java efficiently manage memory and decrease quantity of duplicating strings. JVM checks, if exists the same string in Pool. If she finded, then returns link to it, if doesn't - create new string and place it in Pool.
-
-```java
-var greet =  new String("Hello";) // This way created new string object, even if same string already exist in Pool. using literals are preferable.
-var sub = greet.substring(0, 3).toUpperCase(); // 'greet' is a object of class String and substring is a method of class String.
-```
-
-Под хранение значения переменной выделяется область памяти. Значение получает адрес, по которому его можно извлечь и заменить.
+Под хранение значения переменной выделяется область памяти. Значение получает адрес, по которому его извлечь и заменить.
 
 - Примитивные данные сравниваются по значению
 - Ссылочные данные сравниваются по адресам
 
-Если бы строка всегда вела себя как ссылочный тип, то на каждое значение в коде выделялась доп. память.
-Без оптимизаций это выражение привело бы к двойному выделению памяти. По одной единице памяти на каждый "hm"
+Если бы строка всегда вела себя как ссылочный тип, на каждое значение в коде выделялась доп. память.
+Без оптимизаций это выражение к двойному выделению памяти. По одной единице памяти на каждый "hm"
 ```java
 "hm" == "hm"; // true
 "hexlet".toUpperCase() == "hexlet".toUpperCase(); // false
-```
-
-Когда Java встречает явно создаваемую строку, проверка на сущ уже в памяти.
-Если есть, то она переиспользуется, если нет — создается:
-```java
-// Выделяется память
-var name1 = "Java"; // строка уже есть, подставляется ссылка на уже созданную строку - экономится память
-var name2 = "Java";
-// Сравнение по ссылке Обе переменные указывают на один участок памяти
-name1 == name2; // true
 ```
 
 если строка возвращается из метода, то она помещается в свою область памяти со своим уникальным адресом:
@@ -42,10 +36,4 @@ var name1 = "java".toUpperCase(); // "JAVA"
 // Выделяется новая память в любом случае
 var name2 = "java".toUpperCase(); // "JAVA"
 name1 == name2; // false
-```
-
-сравниваем строки по значению, чем по ссылке - методы.
-```java
-name1.equals(name2); // true
-name1.equalsIgnoreCase(name3); // true
 ```
