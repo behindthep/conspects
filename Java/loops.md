@@ -1,70 +1,24 @@
-В условии цикла должно быть булево выражение — результат вычислений true или false.
-
-
-### Практические сценарии применения do-while
-
-Валидация данных: просим пользователя ввести корректные данные (пароль не короче 6 символов) и повторяем запрос, пока всё не будет верно.
-```java
-String password;
-do
-{
-    System.out.print("Введите новый пароль (не менее 6 символов): ");
-    password = console.nextLine();
-}
-while (password.length() < 6);
-
-System.out.println("Пароль принят!");
-```
-
-Тело цикла выполнится хотя бы раз — даже если пользователь мгновенно введёт длинный пароль.
-
-
 ### Поток выполнения цикла
 
-break выходит из цикла (while), завершает его, а не только из условия (if) внутри цикла.
-оператор continue прерывает текущую итерацию цикла и происходит переход к следующей.
+- break завершает работу цикла
+- оператор continue пропускает текущуую итерацию цикла и происходит переход к следующей
 
-break или continue во внутреннем цикле влияют только на этот цикл. Внешний продолжает работу как ни в чём не бывало.
-
-```
-for (int i = 0; i < 3; i++)
-{
-    for (int j = 0; j < 5; j++) // инициализировать переменные внутренних (j) циклов внутри внешних
-    {
-        if (j == 3)
-            break; // выскакиваем только из внутреннего цикла!
-        System.out.print(i + "," + j + " ");
-    }
-    System.out.println();
-}
-```
-
-0,0 0,1 0,2
-1,0 1,1 1,2
-2,0 2,1 2,2
-
-Выйти сразу из двух вложенных циклов (завершить поиск при первом успешном совпадении в таблице), используют флаг или return.
+break и continue во внутреннем цикле влияют только на него, внешний продолжает работу.
 
 ```java
-public static void main(String[] args) {
-    Scanner console = new Scanner(System.in);
-    int secretKeyCandidate = console.nextInt();
-
-    // Числа <= 1 не являются простыми
-    if (secretKeyCandidate <= 1) {
-        System.out.println("NO");
-        return;
-    }
-
-    boolean isPrime = true;
-
-    // Проверяем делители от 2 до sqrt(n). i <= n / i эквивалентно i*i <= n, но без риска переполнения int.
-    for (int i = 2; i <= secretKeyCandidate / i; i++) {
-        if (secretKeyCandidate % i == 0) { // Нашли делитель — число составное
-            isPrime = false;
-            break;
-        }
-    }
-    System.out.println(isPrime ? "YES" : "NO");
+if (secretKeyCandidate <= 1) {
+    System.out.println("NO");
+    return;
 }
+
+boolean isPrime = true;
+
+// Проверяем делители от 2 до sqrt(n). i <= n / i эквивалентно i*i <= n, без риска переполнения int.
+for (int i = 2; i <= secretKeyCandidate / i; i++) {
+    if (secretKeyCandidate % i == 0) { // Нашли делитель — число составное
+        isPrime = false;
+        break;
+    }
+}
+System.out.println(isPrime ? "YES" : "NO");
 ```
