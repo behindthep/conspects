@@ -670,30 +670,4 @@ Could not create file
 Successfully created file
 bam
 
-&&  для обозначения «и», а || для обозначения «или». команда выполняет скрипт ./tmp.sh, выполняет echo "bam", если код завершения 0. Если код завершения 1, выполняется следующая команда в круглых скобках. в скобках для группировки команд снова используются && и ||.
-
-Скрипт использует коды завершения, была ли команда успешно выполнена. Если коды завершения используются некорректно, пользователь скрипта может получить неожиданные результаты при неудачном выполнении команды.
-
-Команда exit принимает числа от 0 до 255. можно обойтись кодами 0 и 1
-
-
-alias gs="git status"
-alias gd="git add ."
-alias gp="git push -u origin master"
-
-alias diskusage="df -h"
-alias folderusage="du -ch"
-alias totalfolderusage="du -sh"
-
-alias opencustomaliases="code ~/.custom_aliases"
-alias updatecustomaliases="source ~/.custom_aliases"
-alias updatethenupgrade="sudo apt-get update && sudo apt-get upgrade"
-
-
-function lazyman() {
- git add .
- git commit -a -m "$1"
- git push -u origin master
-}
-
-alias lazyman="git add . && git commit -a -m '$i' && git push -u origin master"
+команда выполняет скрипт ./tmp.sh, выполняет echo "bam", если код завершения 0. Если код завершения 1, выполняется следующая команда в скобках. в скобках для группировки команд снова используются && и ||.
