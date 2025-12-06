@@ -37,3 +37,6 @@ var name1 = "java".toUpperCase(); // "JAVA"
 var name2 = "java".toUpperCase(); // "JAVA"
 name1 == name2; // false
 ```
+
+
+конкатенировать String в цикле через +. Это неэффективно по времени и памяти — используйте StringBuilder
