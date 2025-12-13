@@ -211,3 +211,17 @@ BigDecimal newBigDec = bigDec.multiply(BigDecimal.TEN);
 …сигнатура похожа не сеттер, имя метода multiply точно описывает действие и данный нейминг в этом случае подходит лучше других альтернатив.
 
 Аналогично String.substring, Path.resolve и не только.
+
+
+Person vasya = new Person();, в памяти выделяется область под поля объекта (например, имя и возраст), а переменная vasya содержит адрес этой области — ссылку.
+
+Переменная типа класса в Java — это ссылка на объект в памяти, а не сам объект.
+Person vasya = new Person("Вася", 30);
+Person anotherVasya = vasya;
+Теперь и vasya, и anotherVasya указывают на один и тот же объект в памяти. Если изменить поле через одну переменную — оно изменится и для другой:
+
+anotherVasya.age = 31;
+System.out.println(vasya.age); // 31
+
+
+
