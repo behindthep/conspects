@@ -1,135 +1,3 @@
-Switch-выражения из Java 14
-получить значение из switch-выражения, создавать переменную и использовать break
-
-String season;
-switch (month) {
-    case JANUARY:
-    case FEBRUARY:
-        season = "winter";
-        break;
-    case MARCH:
-    case APRIL:
-    case MAY:
-        season = "spring";
-        break;
-    case JUNE:
-    case JULY:
-    case AUGUST:
-        season = "summer";
-        break;
-    case SEPTEMBER:
-    case OCTOBER:
-    case NOVEMBER:
-        season = "autumn";
-        break;
-    case DECEMBER:
-        season = "winter";
-        break;
-    default:
-        throw new IllegalArgumentException();
-    	}
-
-В Java 14 новый формат записи, помогает получать результат выбора и записывать выражение компактнее. Если перечислены все возможные варианты, ветка default не нужна:
-
-String season = switch (month) {
-    case JANUARY, FEBRUARY -> "winter"; //несколько вариантов
-    case MARCH, APRIL, MAY -> "spring";
-    case JUNE, JULY, AUGUST -> "summer";
-    case SEPTEMBER, OCTOBER, NOVEMBER -> "autumn";
-    case DECEMBER -> "winter"; //oдин вариант
-}
-
-веткой default задать сообщение об ошибке:
-
-String season = switch (month) {
-    case "JAN", "FEB" -> "winter";
-    default -> throw new IllegalArgumentException("no such case:" + month);
-}
-
-в значение (case) записать выражение, его {} и для возврата значения yield:
-
-String season = switch (month) {
-    case JANUARY, FEBRUARY -> "winter";
-    case MARCH, APRIL, MAY -> "spring";
-    case JUNE, JULY, AUGUST -> "summer";
-    case SEPTEMBER, OCTOBER, NOVEMBER -> {
-        System.out.println("winter is coming!");
-        yield "autumn";
-    }
-    case DECEMBER -> "winter";
-}
-
-Switch-выражениям не обязательно возвращать значение:
-
-switch (order) {
-    case NATURAL -> Arrays.sort(strings, Comparator.naturalOrder());
-    case REVERSE -> Arrays.sort(strings, Comparator.reverseOrder());
-}
-
-литерал в несколько строк, его собирали через конкатенацию:
-
-String query = "SELECT Students.name as \"Name\", SUM(Courses.duration) as \"Duration\"\n"
-   + "FROM Students\n"
-   + "JOIN Subscriptions ON Students.id = Subscriptions.student_id\n"
-   + "JOIN Courses ON Subscriptions.course_id = Courses.id\n"
-   + "GROUP BY Students.id\n"
-   + "ORDER BY Students.name";
-
-текстовые блоки, это делают одним блоком. Текст с переносами и кавычками в тройные кавычки:
-
-String query = """
-   SELECT Students.name as "Name", SUM(Courses.duration) as "Duration"
-   FROM Students
-   JOIN Subscriptions ON Students.id = Subscriptions.student_id
-   JOIN Courses ON Subscriptions.course_id = Courses.id
-   GROUP BY Students.id
-   ORDER BY Students.name""";
-System.out.println(query);
-
-код отобразится при выводе в консоль (слева не будет пробелов или отступов):
-
-Размер отступа зависит от отступа в предыдущей строке:
-
-String query = """
-   SELECT Students.name as "Name", SUM(Courses.duration) as "Duration"
-       FROM Students
-       JOIN Subscriptions ON Students.id = Subscriptions.student_id
-       JOIN Courses ON Subscriptions.course_id = Courses.id
-       GROUP BY Students.id
-       ORDER BY Students.name""";
-System.out.println(query);
-
-Левая граница строки общая для всего блока, правую определяет последний символ строки:
-
-Если знак """ поставить не за последним элементом, а разместить на новой строке, после каждой строки перенос:
-
-Java 15 и выше:
-
-String query = """
-   line1
-   line2
-   line3
-   """;
-   
-Ранние версии Java:
-
-String query = "line1\nline2\nline3\n";
-
-разместить всё в одну строку, экранировать переносы — добавлять в конце строк \:
-
-Java 15 и выше:
-
-String query = """
-   line1\
-   line2\
-   line3""";
-   
-Ранние версии Java:
-
-String query = "line1line2line3";
-
-к какому классу относится объект, оператор instanceof. проверить объект и привести его к нужному виду, объявляли переменную, присваивали ей тип, проверяли объект:
-
 Object string = "this is string!";
 
 if(string instanceof String){
@@ -152,6 +20,7 @@ if (!(object instanceof Number number)) {
 }
 
 проверка !(object instanceof Number number) выдаёт результат false, и после выхода из if использовать number для реализации своей логики.
+
 
 Класс record — писать иммутабельные POJO-классы, с ней не нужно повторять одинаковые методы: геттеры, toString(), equals() и hashCode().
 
@@ -200,14 +69,11 @@ public class Student {
    }
 }
 
-У класса всего два поля, но много бойлерплейтного кода(Бойлерплейт — код, вставляют в приложение почти без изменений. Иногда одни и те же шаблоны кода копируют в разные части приложения).
-
-как работает класс, сделаем два объекта, выведем их в консоль и сравним:
+У класса два поля, но много бойлерплейтного кода(Бойлерплейт — код, вставляют в приложение почти без изменений. Иногда одни и те же шаблоны кода копируют в разные части приложения).
 
 var student = new Student("Alex", CourseType.MATH);
 var studentSame = new Student("Alex", CourseType.MATH);
 
-System.out.println(student);
 System.out.println(studentSame.equals(student));
 System.out.println(studentSame.hashCode() == student.hashCode());
 
@@ -234,10 +100,6 @@ public record Student(String name, CourseType courseType) {}
 student.name(); //Alex
 student.courseType(); //MATH
 
-Если нужна валидация данных, конструктор можно расширить или написать свой:
-
-Расширенный конструктор:
-
 public record Student(String name, CourseType courseType) {
 
    public Student {
@@ -247,18 +109,12 @@ public record Student(String name, CourseType courseType) {
    }
 }
 
-Кастомный конструктор:
-
 public record Student(String name, CourseType courseType) {
 
    public Student(String name){
        this(name, CourseType.MATH);
    }
 }
-
-стандартный конструктор со всеми параметрами класса остаётся доступным.
-
-У класса record есть ограничения и особенности:
 
 все объявленные поля получают модификатор final (Если класс объявили с модификатором final, от него нельзя наследоваться.);
 все поля класса объявляются в заголовке, дополнительные объявить нельзя:
@@ -271,11 +127,9 @@ public record Student(String name, CourseType courseType) {
 можно объявлять static-поля класса;
 класс record неявно объявлен как final, поэтому его нельзя наследовать;
 он не может быть абстрактным и наследовать другие классы;
-можно добавлять свои конструкторы;
 для конструктора можно использовать проверку аргументов;
 можно переопределить стандартные методы — геттеры, toString(), equals() и hashCode();
 можно добавлять статические и нестатические методы.
-Благодаря компактному синтаксису класс records несложно обновлять локально:
 
 public static List<Student> findTreeStudentsByAlphabet(List<Student> students) {
    record CourseTypeToFirstLetter(Student student, char firstLetter) {}
@@ -312,4 +166,5 @@ sealed interface Person
 public record Student(String name) implements Person{}
 record по умолчанию final, ограничения класса sealed соблюдены.
 
-Запечатанные классы помогают установить ограничение на число наследников, когда их набор определён и его не собираются часто менять. перечисление (enum), но sealed class гибче, одни ветки наследования можно открыть для расширения, а другие ограничить только для использования.
+Запечатанные классы помогают установить ограничение на число наследников, когда их набор определён и его не собираются часто менять. 
+перечисление (enum), но sealed class гибче, одни ветки наследования можно открыть для расширения, а другие ограничить только для использования.
