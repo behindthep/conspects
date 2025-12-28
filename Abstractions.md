@@ -269,3 +269,43 @@ class Task {
 }
 
 
+
+Пример с внедрением зависимости
+
+public interface NotificationSender {
+    void send(String message);
+}
+
+public class EmailNotificationSender implements NotificationSender {
+    @Override
+    public void send(String message) {
+        System.out.println("Отправка Email: " + message);
+    }
+}
+
+public class SmsNotificationSender implements NotificationSender {
+    @Override
+    public void send(String message) {
+        System.out.println("Отправка SMS: " + message);
+    }
+}
+
+// Класс, который использует NotificationSender
+public class NotificationService {
+    private final NotificationSender sender;
+
+    public NotificationService(NotificationSender sender) {
+        this.sender = sender;
+    }
+
+    public void notifyUser(String message) {
+        sender.send(message);
+    }
+}
+
+
+Если вы везде используете конкретные классы, а не интерфейсы, то любое изменение реализации потребует переписывать код во многих местах. Всегда старайтесь программировать «на уровне интерфейсов».
+
+Интерфейс должен быть компактным и отвечать за одну зону ответственности.
+интерфейсы для подмены зависимостей в тестах
+Используйте внедрение зависимостей (DI)
