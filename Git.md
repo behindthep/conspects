@@ -2,51 +2,17 @@
 
 git checkout <from-branch-name> <path-to-file-or-dir>
 
-git init -b master&& \
-echo "this is txt file" > main.txt && \
-git add main.txt && \
-git commit -m "Initial commit" && \
-git checkout -b second && \
-mkdir myDir && \
-echo "must be copied" > myDir/second.txt && \
-git add myDir/second.txt && \
-git commit -m "added second.txt"
-
-скопировать и выполнить все команды за один раз.
-
-скопировать файл myDir/second.txt из ветки second в master. Для копирования файла, перейдите в ветку, в которую хотите скопировать файл или директорию из другой ветки.
-
-git checkout master
-
-После можно выполнить команду копирования:
+git checkout -b second
 
 git checkout second ./myDir/second.txt
-
-из ветки second будет скопирован файл, при этом сохранится путь до файла. То есть в master будет лежать файл в папке mydDir.
-
-Если файл уже есть в текущей ветке - он будет перезаписан!
-
-файл у нас скопировался:
-
-git status
-
-On branch master
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-	new file:   myDir/second.txt
-
-файл уже подготовлен к коммиту.
 
 из коммита скопировать файл, просто замените название ветки на хэш коммита.
 
 скопировать файл по другому пути? Так тоже можно, для этого можно использовать другую команду git show.
 
-повторить действия - удалите директорию и снова создайте репозиторий с двумя ветками, использую код выше.
-
 перейдем в master и создадим папку config и в нее позже скопируем файл second.txt.
 
 git checkout master
-mkdir config
 
 git show <branch-name-or-hash>:<path-to-copy> > <path-to-paste>
 
